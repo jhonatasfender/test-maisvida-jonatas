@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-navbar color="primary" hideBackButton="true">
+		<ion-title>Listagem de Médicos</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class=" common-bg">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para atualizar" refreshingSpinner="circles" refreshingText="Atualizando..."></ion-refresher-content>
+	</ion-refresher>
+    <div text-center class="margin-top-20 secondary">
+		<h6>Obs.: Para poder alterar as informações basta deslizar para os lados</h6>
+    </div>
+    <br>
+    <ion-list *ngIf="doc.length">
+        <ion-item-sliding *ngFor="let d of doc" >
+			<ion-item>
+				<div class="unio-title">
+					<h2>{{ d.getFirstName() }}</h2>
+					<h2>{{ d.getLastName() }}</h2>
+				</div>
+				<h4>{{ d.getEmail() }}</h4>
+				<div class="unio-title-h6">
+					<h6>{{ d.getState() }}</h6>
+					<h6>/</h6>
+					<h6>{{ d.getCity() }}</h6>
+					<h6 style="color: green">{{ d.getActive() == "true" ? "Ativo" : "Inativo"}}</h6>
+					<h6 style="color: red">{{ d.getStatus() == "true" ? "Ocupado" : "Disponível" }}</h6>
+				</div>
+			</ion-item>
+			<ion-item-options side="left">
+				<button ion-button color="primary" (click)="active(d)">
+					<ion-icon name="checkmark-circle"></ion-icon>
+					{{ d.getActive() == "false" ? "Ativar" : "Desativar" }}
+				</button>
+				<button ion-button color="secondary" (click)="status(d)">
+					<ion-icon name="menu"></ion-icon>
+					{{ d.getStatus() == "false" ? "Ocupar" : "Desocupar" }}
+				</button>
+			</ion-item-options>
+			<ion-item-options side="right">
+				<button ion-button color="favorite" (click)="viewer(d.getId())">
+					<ion-icon name="eye"></ion-icon>
+					Visualizar
+				</button>
+				<button ion-button color="light" (click)="edit(d.getId())">
+					<ion-icon name="open"></ion-icon>
+					Editar
+				</button>
+			</ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

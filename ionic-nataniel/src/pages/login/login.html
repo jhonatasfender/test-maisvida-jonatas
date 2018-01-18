@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar color="secondary">
+        <ion-title>Login</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="login">
+    <div text-center class="margin-top-20 secondary">DESAFIO MAIS VIDA</div>
+
+    <ion-list class="list-form">
+
+        <ion-item class="margin-top">
+            <ion-input type="text" placeholder="Email" [(ngModel)]="_login"></ion-input>
+        </ion-item>
+
+        <ion-item class="margin-top">
+            <ion-input type="password" placeholder="Senha" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Permanecer conectado?</ion-label>
+            <ion-checkbox [(ngModel)]="p"></ion-checkbox>
+        </ion-item>
+
+    </ion-list>
+
+    <button ion-button color="secondary" block (click)="login()">LOGIN</button>
+
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header>
+	<ion-navbar color="primary" hideBackButton="true">
+		<ion-title>{{ title }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div text-center class="margin-top-20 secondary" [hidden]="title != 'Editar'">FAÇA O SEU CADASTRO </div>
+	<div text-center class="margin-top-20 secondary" [hidden]="title != 'Visualizar'">NESSA TELA VOCÊ PODE SOMENTE VISUALIZAR AS INFORMAÇÕES</div>
+
+    <ion-list class="list-form">
+
+        <ion-item class="margin-top">
+            <ion-input [(ngModel)]="doc.firstName" type="text" placeholder="Primeiro Nome"></ion-input>
+        </ion-item>
+
+        <ion-item class="margin-top">
+            <ion-input [(ngModel)]="doc.lastName" type="text" placeholder="Segundo Nome"></ion-input>
+        </ion-item>
+
+        <ion-item class="margin-top">
+            <ion-input [(ngModel)]="doc.specialty" type="text" placeholder="Especialidade"></ion-input>
+        </ion-item>
+
+        <ion-item class="margin-top">
+            <ion-input [(ngModel)]="doc.state" type="text" placeholder="Estado"></ion-input>
+        </ion-item>
+
+        <ion-item class="margin-top">
+            <ion-input [(ngModel)]="doc.city" type="text" placeholder="Cidade"></ion-input> 
+        </ion-item>
+
+        <ion-item class="margin-top">
+            <ion-input [(ngModel)]="doc.email" type="email" placeholder="Email"></ion-input>
+        </ion-item>
+
+		<ion-row>
+			<ion-col col-6>
+				<ion-item class="margin-top">
+					<ion-checkbox [(ngModel)]="doc.active"></ion-checkbox>
+    				<ion-label> {{ doc.getActive() == "true" ? "Ativo" : "Inativo" }}</ion-label>
+				</ion-item>
+			</ion-col>
+			<ion-col col-6>
+				<ion-item class="margin-top">
+					<ion-checkbox [(ngModel)]="doc.status"></ion-checkbox>
+    				<ion-label> {{ doc.getStatus() == "true" ? "Disponível" : "Ocupado" }}</ion-label>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+
+    </ion-list>
+	<ion-row [hidden]="title == 'Adicionar'">
+		<ion-col col-6>
+            <button ion-button color="secondary" block (click)="signUp()" [hidden]="title != 'Editar'">Enviar</button>
+            <button ion-button color="secondary" block (click)="edit(doc.getId())" [hidden]="title != 'Visualizar'">Editar</button>
+        </ion-col>
+        <ion-col col-6>
+            <button ion-button color="primary" block (click)="back()">Voltar</button>
+        </ion-col>
+    </ion-row>
+    <button ion-button color="secondary" block (click)="signUp()" [hidden]="title != 'Adicionar'">Salvar</button>
+
+
+</ion-content>
